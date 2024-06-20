@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b36x4gnq5j8nw"]
+
+[ext_resource type="Script" path="res://Logic/BallShooterLogic.gd" id="1_f2n8r"]
+[ext_resource type="Texture2D" uid="uid://v3loy7h81kxi" path="res://Textures/rectanglePeg.png" id="1_yy7kh"]
+
+[node name="BallJector" type="Node2D"]
+script = ExtResource("1_f2n8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yy7kh")

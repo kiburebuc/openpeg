@@ -1,0 +1,135 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwiwt0i1actnr"]
+
+[ext_resource type="Script" path="res://Logic/stage_elements_logic.gd" id="1_efx4c"]
+[ext_resource type="Texture2D" uid="uid://cgibtwbty2v42" path="res://Textures/MasterFrames/BjornFrame.png" id="1_wlrqm"]
+[ext_resource type="PackedScene" uid="uid://cjmh71s7wnhsc" path="res://Objects/free_ball_bucket.tscn" id="2_irhm7"]
+[ext_resource type="FontFile" uid="uid://blwxtgig418k7" path="res://ballotronFont.png" id="3_wa04l"]
+[ext_resource type="Texture2D" uid="uid://dtdwob002kvmv" path="res://Textures/LevelBolderItems/ScoreBarGreen.png" id="4_bgsj8"]
+[ext_resource type="Texture2D" uid="uid://m1jkfdn1aqlq" path="res://Textures/LevelBolderItems/ScoreBarPurple.png" id="5_h5wrp"]
+[ext_resource type="Texture2D" uid="uid://h8bc4fy8tk57" path="res://Textures/LevelBolderItems/feverMeterFill.png" id="5_xya3k"]
+[ext_resource type="Texture2D" uid="uid://dh120sfoh5hsb" path="res://Textures/LevelBolderItems/ScoreBarGold.png" id="6_gmp3t"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g03o8"]
+bounce = 0.75
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qr5wk"]
+size = Vector2(33.75, 1119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6o33"]
+size = Vector2(1159, 50.5)
+
+[node name="Stage Elements" type="Node2D"]
+script = ExtResource("1_efx4c")
+
+[node name="BjornBorder" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(1.79903, 1.8)
+texture = ExtResource("1_wlrqm")
+
+[node name="Walls" type="StaticBody2D" parent="BjornBorder"]
+visible = false
+position = Vector2(-533.621, -300)
+scale = Vector2(0.555855, 0.555556)
+physics_material_override = SubResource("PhysicsMaterial_g03o8")
+
+[node name="Right" type="CollisionShape2D" parent="BjornBorder/Walls"]
+position = Vector2(1557, 559.5)
+shape = SubResource("RectangleShape2D_qr5wk")
+
+[node name="Left" type="CollisionShape2D" parent="BjornBorder/Walls"]
+position = Vector2(364, 559)
+shape = SubResource("RectangleShape2D_qr5wk")
+
+[node name="DeathPit" type="StaticBody2D" parent="BjornBorder"]
+visible = false
+position = Vector2(-533.621, -300)
+scale = Vector2(0.555855, 0.555556)
+
+[node name="DeathPit" type="CollisionShape2D" parent="BjornBorder/DeathPit"]
+position = Vector2(960.5, 1134)
+shape = SubResource("RectangleShape2D_y6o33")
+
+[node name="BallCounter" type="RichTextLabel" parent="."]
+offset_left = 268.0
+offset_top = 191.0
+offset_right = 355.0
+offset_bottom = 272.0
+theme_override_fonts/normal_font = ExtResource("3_wa04l")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]10"
+autowrap_mode = 0
+
+[node name="BalloTron Meter Green" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 249.0
+offset_top = 293.0
+offset_right = 372.0
+offset_bottom = 922.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 25000.0
+step = 10.0
+value = 25000.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("4_bgsj8")
+
+[node name="BalloTron Meter Purple" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 249.0
+offset_top = 293.0
+offset_right = 372.0
+offset_bottom = 922.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 25000.0
+max_value = 75000.0
+step = 10.0
+value = 25000.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("5_h5wrp")
+
+[node name="BalloTron Meter Gold" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 249.0
+offset_top = 293.0
+offset_right = 372.0
+offset_bottom = 922.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 75000.0
+max_value = 125000.0
+step = 10.0
+value = 75000.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("6_gmp3t")
+
+[node name="Fevermeter Bar" type="TextureProgressBar" parent="."]
+offset_left = 1566.0
+offset_top = 318.0
+offset_right = 1651.0
+offset_bottom = 930.0
+max_value = 25.0
+value = 25.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("5_xya3k")
+
+[node name="FreeBucket" parent="." instance=ExtResource("2_irhm7")]
+position = Vector2(985, 1055)
+leftBound = 475

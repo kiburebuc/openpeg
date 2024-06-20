@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://lw8ng41mn06n"]
+
+[ext_resource type="Script" path="res://Logic/GenericPegLogic.gd" id="1_3d1yv"]
+[ext_resource type="PhysicsMaterial" uid="uid://0cq1qooxf6av" path="res://Objects/gerMat.tres" id="1_6m53s"]
+[ext_resource type="Texture2D" uid="uid://d0h4y3u3sgbwq" path="res://Textures/Pegs/HDpegShadow.png" id="2_gf8qs"]
+[ext_resource type="Texture2D" uid="uid://d4iey5bj1kj14" path="res://Textures/Pegs/HDbluePeg.png" id="3_1o4rs"]
+[ext_resource type="AudioStream" uid="uid://tnlruvhhmnk7" path="res://Sounds/peghit.ogg" id="4_n3ca3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_je58n"]
+radius = 18.0
+
+[node name="GenericPeg" type="StaticBody2D"]
+physics_material_override = ExtResource("1_6m53s")
+script = ExtResource("1_3d1yv")
+
+[node name="pegShadow" type="Sprite2D" parent="."]
+position = Vector2(-3, 3)
+scale = Vector2(0.863636, 0.863636)
+texture = ExtResource("2_gf8qs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 9.53674e-07)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_1o4rs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_je58n")
+
+[node name="DeleteTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="PegHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n3ca3")
+bus = &"SFX"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="."]
+offset_left = -20.0
+offset_top = 22.0
+offset_right = 20.0
+offset_bottom = 45.0
+bbcode_enabled = true
+
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlfqa1n0hdjm0"]
+
+[ext_resource type="Script" path="res://Logic/stage.gd" id="1_1q3xo"]
+[ext_resource type="PackedScene" uid="uid://b36x4gnq5j8nw" path="res://Objects/ball_jector.tscn" id="3_s05be"]
+[ext_resource type="PackedScene" uid="uid://cncrbsnl1l68h" path="res://Objects/ball.tscn" id="4_yrnfv"]
+[ext_resource type="PackedScene" uid="uid://bwiwt0i1actnr" path="res://Objects/stage_elements.tscn" id="5_40lpa"]
+[ext_resource type="Script" path="res://Logic/PegControllerLogic.gd" id="5_iwlo8"]
+
+[node name="peggle stage" type="Node2D"]
+script = ExtResource("1_1q3xo")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960.925, 580.688)
+scale = Vector2(1.79489, 1.79489)
+
+[node name="BallJector" parent="." instance=ExtResource("3_s05be")]
+position = Vector2(960, 127)
+
+[node name="Ball" parent="." instance=ExtResource("4_yrnfv")]
+mass = 0.5
+
+[node name="BallPath" type="Line2D" parent="."]
+width = 3.0
+joint_mode = 2
+begin_cap_mode = 2
+
+[node name="Message" type="RichTextLabel" parent="."]
+offset_left = 15.0
+offset_top = 48.0
+offset_right = 188.0
+offset_bottom = 101.0
+
+[node name="Stage Elements" parent="." instance=ExtResource("5_40lpa")]
+
+[node name="Peg Controller" type="Node2D" parent="."]
+script = ExtResource("5_iwlo8")

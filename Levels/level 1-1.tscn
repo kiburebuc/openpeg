@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6e7fvgsvinis"]
+
+[ext_resource type="PackedScene" uid="uid://dlfqa1n0hdjm0" path="res://Objects/genericStage.tscn" id="1_3ar8y"]
+[ext_resource type="Texture2D" uid="uid://do811cui64cxi" path="res://Textures/Level Backgrounds/World 1 - Bjorn/bjorn first stage.png" id="2_06csl"]
+
+[node name="peggle stage" instance=ExtResource("1_3ar8y")]
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_06csl")
